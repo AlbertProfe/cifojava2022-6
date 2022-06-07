@@ -5,9 +5,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @ToString
+
+@Getter @Setter @ToString
 @Entity(name="RareBook")
-@Table(name="RARE_BOOK_TABLE")
 public class RareBook extends Book{
 
     @Column(name="HAND_MADE")
@@ -20,4 +20,18 @@ public class RareBook extends Book{
     private boolean collection;
 
     //example: https://www.etsy.com/listing/927526995/daemonologie-by-king-james-rare-occu
+
+
+    public RareBook(String title, int pages, int publishedYear, String isbn, boolean handMade, boolean handNumbered, String numberCollection, boolean collection) {
+        super(title, pages, publishedYear, isbn);
+        this.handMade = handMade;
+        this.handNumbered = handNumbered;
+        this.numberCollection = numberCollection;
+        this.collection = collection;
+
+    }
+
+    public RareBook(){
+        super();
+    }
 }

@@ -1,16 +1,25 @@
 package io.company.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-@MappedSuperclass
-public abstract class Book {
+
+@Getter
+@Setter
+@ToString
+@Entity
+public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", updatable = false, nullable = false)
-    private  long id;
+    private Long id;
     @Column(name = "TITLE")
     private String title;
     @Column(name = "PAGES")
@@ -20,13 +29,20 @@ public abstract class Book {
     @Column(name="ISBN")
     private String isbn;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "AUTHOR_BOOK_JOIN_TABLE",
-            joinColumns = { @JoinColumn(name = "BOOK_FK" )},
-            inverseJoinColumns = { @JoinColumn(name = "AUTHOR_FK" )})
+    @ManyToMany(mappedBy = "books", cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
     private Set<Author> authors = new HashSet<Author>();
 
 
+    public Book(String title, int pages, int publishedYear, String isbn) {
+        this.title = title;
+        this.pages = pages;
+        this.publishedYear = publishedYear;
+        this.isbn = isbn;
+    }
+
+    public Book() {
+    }
 
 
 }

@@ -15,7 +15,7 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="AUTHOR_ID")
-    private  long authorId;
+    private Long authorId;
     @Column(name="FIRST_NAME")
     private String firstName;
     @Column(name="LAST_NAME")
@@ -23,9 +23,11 @@ public class Author {
     @Column(name = "DATE_OF_BIRTH", columnDefinition = "DATE")
     private LocalDate dob;
 
-    @ManyToMany(mappedBy = "authors", cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
-    private Set<Book> books = new HashSet<Book>();
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "AUTHOR_BOOK_JOIN_TABLE",
+            joinColumns = { @JoinColumn(name = "BOOK_FK" )},
+            inverseJoinColumns = { @JoinColumn(name = "AUTHOR_FK" )})
+    public Set<Book> books = new HashSet<Book>();
 
     //constructor without ID
     public Author(String firstName, String lastName, LocalDate dob){
