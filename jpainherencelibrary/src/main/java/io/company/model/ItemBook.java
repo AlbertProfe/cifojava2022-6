@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 @Getter @Setter @ToString
 @Entity(name="ItemBook")
+@Table(name="ITEM_BOOK_TABLE")
 public class ItemBook extends Book {
 
     @Column(name="STATUS")

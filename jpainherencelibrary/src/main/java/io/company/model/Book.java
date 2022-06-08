@@ -1,8 +1,6 @@
 package io.company.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,16 +8,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-@Getter
-@Setter
-@ToString
-@Entity
+@Getter @Setter @ToString @NoArgsConstructor @AllArgsConstructor
+@Entity(name="BOOK")
+@Table(name="BOOK_TABLE")
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", updatable = false, nullable = false)
-    private Long id;
+    private int id;
     @Column(name = "TITLE")
     private String title;
     @Column(name = "PAGES")
@@ -33,15 +30,12 @@ public class Book {
             fetch = FetchType.EAGER)
     private Set<Author> authors = new HashSet<Author>();
 
-
+    //constructor without ID
     public Book(String title, int pages, int publishedYear, String isbn) {
         this.title = title;
         this.pages = pages;
         this.publishedYear = publishedYear;
         this.isbn = isbn;
-    }
-
-    public Book() {
     }
 
 

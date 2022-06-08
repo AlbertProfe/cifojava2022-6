@@ -5,9 +5,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-
 @Getter @Setter @ToString
 @Entity(name="RareBook")
+@Table(name="RARE_BOOK_TABLE")
 public class RareBook extends Book{
 
     @Column(name="HAND_MADE")

@@ -26,42 +26,82 @@ class JpaInherenceLibraryApplicationTests {
 
 	@Test
 	void createObjects() {
-
-		ItemBook itemBook1 = new ItemBook();
-		itemBookRepository.save(itemBook1);
-
-		Book itemBook2 = new ItemBook();
-		bookRepository.save(itemBook2);
-
-		RareBook rareBook1 = new RareBook();
-		rareBookRepository.save(rareBook1);
-
-		Book rareBook2 = new RareBook();
-		bookRepository.save(rareBook2);
-
+		//save a Book object
 		Book book1 = new Book();
 		bookRepository.save(book1);
+		//just save a itemBook
+		ItemBook itemBook1 = new ItemBook();
+		itemBookRepository.save(itemBook1);
+		//just save a rareBook
+		RareBook rareBook1 = new RareBook();
+		rareBookRepository.save(rareBook1);
+		//just save a itemBook with BOOK reference
+		//so in compilation time it is a BOOK
+		Book itemBook2 = new ItemBook();
+		bookRepository.save(itemBook2);
+		//rareBook with BOOK reference
+		Book rareBook2 = new RareBook();
+		bookRepository.save(rareBook2);
 
 		Author author1 = new Author();
 		authorRepository.save(author1);
 
-		author1.getBooks().add(book1);
-		authorRepository.save(author1);
+		//let s save an AUTHOR object
+		//AUTHOR2
+		Author author2 = new Author();
+		authorRepository.save(author2);
+		//let s join 2 BOOK and AUTHOR
+		author2.getBooks().add(itemBook1);
+		author2.getBooks().add(itemBook2);
+		authorRepository.save(author2);
 
-//		author1.getBooks().add(itemBook2);
-//		authorRepository.save(author1);
+		Author author3 = new Author();
+		authorRepository.save(author3);
+		//let s join a BOOK and AUTHOR
+		author3.getBooks().add(itemBook1);
+		//authorRepository.save(author3);
+		//let s join another book
+		author3.getBooks().add(itemBook2);
+		authorRepository.save(author3);
+		
 
 
+	}
 
+	@Test
+	void joinObjects(){
+		Book book1 = new Book();
+		ItemBook itemBook1 = new ItemBook();
+		RareBook rareBook1 = new RareBook();
+		Book itemBook2 = new ItemBook();
 
+		//let s save an AUTHOR object
+		//AUTHOR1
+		//Author author1 = new Author();
+		//authorRepository.save(author1);
+		//let s join BOOK and AUTHOR
+		//author1.getBooks().add(book1);
+		//authorRepository.save(author1);
 
+		//let s save an AUTHOR object
+		//AUTHOR2
+		//Author author2 = new Author();
+		//authorRepository.save(author2);
+		//let s join 2 BOOK and AUTHOR
+		//author2.getBooks().add(itemBook1);
+		//author2.getBooks().add(itemBook2);
+		//authorRepository.save(author2);
 
-
-
-
-
-
-
+		//let s save an AUTHOR object
+		//AUTHOR3
+		Author author3 = new Author();
+		authorRepository.save(author3);
+		//let s join a BOOK and AUTHOR
+		author3.getBooks().add(itemBook1);
+		authorRepository.save(author3);
+		//let s join another book
+		author3.getBooks().add(itemBook2);
+		authorRepository.save(author3);
 	}
 
 }
