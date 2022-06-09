@@ -25,8 +25,8 @@ public class Author {
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "AUTHOR_BOOK_JOIN_TABLE",
-            joinColumns = { @JoinColumn(name = "BOOK_FK" )},
-            inverseJoinColumns = { @JoinColumn(name = "AUTHOR_FK" )})
+            joinColumns = { @JoinColumn(name = "AUTHOR_FK" )},
+            inverseJoinColumns = { @JoinColumn(name = "BOOK_FK" )})
     public Set<Book> books = new HashSet<Book>();
 
     //constructor without ID
