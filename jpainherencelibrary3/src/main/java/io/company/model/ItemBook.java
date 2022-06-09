@@ -7,6 +7,8 @@ import java.time.LocalDate;
 
 @Getter @Setter @ToString
 @Entity(name="ItemBook")
+@PrimaryKeyJoinColumn(name = "bookItemId")
+@DiscriminatorValue(value= "ITEMBOOK")
 public class ItemBook extends Book {
 
     @Column(name="STATUS")
