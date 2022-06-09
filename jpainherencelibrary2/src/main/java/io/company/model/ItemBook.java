@@ -11,7 +11,8 @@ import java.time.LocalDate;
 public class ItemBook extends Book {
 
     @Column(name="STATUS")
-    private Enum status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
     @Column(name="BORROWED_DATE")
     private LocalDate borrowedDate;
     @Column(name="DUE_DATE")
@@ -24,7 +25,7 @@ public class ItemBook extends Book {
     //example https://www.oleanlibrary.org/about/library-card/due-dates-and-loan-periods
 
 
-    public ItemBook(String title, int pages, int publishedYear, String isbn, Enum status, LocalDate borrowedDate, LocalDate dueDate, int loanPeriod, int overDueDaysQty) {
+    public ItemBook(String title, int pages, int publishedYear, String isbn, Status status, LocalDate borrowedDate, LocalDate dueDate, int loanPeriod, int overDueDaysQty) {
         super(title, pages, publishedYear, isbn);
         this.status = status;
         this.borrowedDate = borrowedDate;
