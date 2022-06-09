@@ -1,13 +1,7 @@
 package io.company;
 
-import io.company.model.Author;
-import io.company.model.Book;
-import io.company.model.ItemBook;
-import io.company.model.RareBook;
-import io.company.repository.AuthorRepository;
-import io.company.repository.BookRepository;
-import io.company.repository.ItemBookRepository;
-import io.company.repository.RareBookRepository;
+import io.company.model.*;
+import io.company.repository.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +17,8 @@ class JpaInherenceLibraryApplicationTests {
 	BookRepository bookRepository;
 	@Autowired
 	RareBookRepository rareBookRepository;
+	@Autowired
+	PocketItemBookRepository PocketItemBookRepository;
 
 	@Test
 	void createObjects() {
@@ -70,6 +66,9 @@ class JpaInherenceLibraryApplicationTests {
 		//let s join another book
 		//author3.getBooks().add(itemBook2);
 		//authorRepository.save(author3);
+
+		PocketItemBook pocketItemBook1 = new PocketItemBook();
+		PocketItemBookRepository.save(pocketItemBook1);
 
 
 	}

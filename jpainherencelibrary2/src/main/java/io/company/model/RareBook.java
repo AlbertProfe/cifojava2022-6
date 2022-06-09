@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Getter @Setter @ToString
 @Entity(name="RareBook")
-@DiscriminatorValue(value= "REREBOOK")
+@DiscriminatorValue(value= "RAREBOOK")
 public class RareBook extends Book{
 
     @Column(name="HAND_MADE")
